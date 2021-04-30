@@ -10,4 +10,10 @@
   --black-text-color: rgba(0, 0, 0, 0.82); // #000 - 82%
   --grey-text-color: rgba(0, 0, 0, 0.5); // #000 - 50%
   --card-bg: #ffffff;
+	--footer-bg: var(--primary-color);
+}
+
+* {
+	margin: 0;
+	padding: 0;
 }
