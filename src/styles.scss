@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+// Regular fontweight 400
+// Bold fontweight 700
+$open-sans: 'Open Sans', sans-serif;
+
+$primary-color: #FBC91B;
+$grey-color: #F2F2F2;
+$black-text-color: rgba(0, 0, 0, 0.82); // #000 - 82%
+$grey-text-color: rgba(0, 0, 0, 0.5); // #000 - 50%
