@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
-
+  tabList = ['New', 'Past'];
+  selectedTab: String = this.tabList[0];
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  openTab(tab: String)  {
+    this.selectedTab = tab;
+  }
+
+  loadMore() {
+
+  }
 }

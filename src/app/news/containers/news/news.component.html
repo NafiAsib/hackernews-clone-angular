@@ -1,1 +1,18 @@
-<app-news-card></app-news-card>
+<!-- <app-news-card></app-news-card> -->
+<div class="tablist">
+  <div *ngFor="let tab of tabList">
+    <div class="tab" (click)="openTab(tab)" [ngClass]="{'active': selectedTab === tab}">
+      {{ tab }}
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="selectedTab === 'New' ">
+  <app-new-news></app-new-news>
+</ng-container>
+<ng-container *ngIf="selectedTab === 'Past' ">
+  <app-past-news></app-past-news>
+</ng-container>
+<div class="load-more">
+  <div class="load-more-btn" (click)="loadMore()">Load More</div>
+</div>

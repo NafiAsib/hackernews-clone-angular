@@ -1,0 +1,42 @@
+.tablist {
+  display: flex;
+  flex-direction: row;
+  margin: 0px 0px 0px 16px;
+  .tab {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 61px;
+    height: 24px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0px 7px 0px 0px;
+    background: var(--grey-color);
+    cursor: pointer;
+  }
+}
+
+.active {
+  background: var(--primary-color) !important;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 0px 16px 0px;
+  .load-more-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 328px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--primary-color);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+}
