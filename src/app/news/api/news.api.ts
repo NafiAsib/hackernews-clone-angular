@@ -6,16 +6,18 @@ import { News } from "../models/news.model";
 import { Observable } from "rxjs";
 import { NewsDetails } from "../models/news-details.model";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class NewsApi {
-  readonly NEW_API = '/newstories';
+  readonly NEW_API = '/newstories.json';
   readonly PAST_API = '/topstories'; // using topstories api, because didn't past stories api 
   readonly DETAILS_API = '/item'
 
   constructor(private http: HttpClient) {}
 
-  getNewNews(): Observable<News[]> {
-    return this.http.get<News[]>(config.apiUrl + this.NEW_API);
+  getNewNews(): Observable<number[]> {
+    return this.http.get<number[]>(config.apiUrl + this.NEW_API);
   }
 
   getPastNews(): Observable<News> {
