@@ -1,34 +1,47 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
 import { NewsApi } from "../api/news.api";
 import { NewNewsState } from "../state/new-news.state";
-import { shareReplay, tap } from 'rxjs/operators';
+import { map, shareReplay, tap } from 'rxjs/operators';
+import { Observable } from "rxjs";
+import { NewsDetails } from "../models/news-details.model";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class NewNewsFacade {
 
   constructor(private newsApi: NewsApi, private newNewsSate: NewNewsState) {
-    // this.getNews$();
+      this.getNewsId$();
+  }
+  
+  getNewsId$() {
+    this.newsApi.getNewNews()
+      .pipe(tap(news => this.newNewsSate.setNewsId$(news)))
+      .subscribe(
+        () => {
+          this.updateNewsDetails$();
+        },
+      )
   }
 
-  getNews$() {
-    return this.newsApi.getNewNews().pipe(tap(news => this.newNewsSate.setNewsId$(news)));
-    // return this.newsApi.getNewNews().pipe(shareReplay(1));
-  }
-
-  // call this function everytime for load more, or  initial news loading
-  loadNews$() {
-    this.getNews$();
+  updateNewsDetails$() {
     const newsId = this.newNewsSate.getNewsId$();
     let index = this.newNewsSate.getIndex$();
     let maxIndex = index + 3;
-    for(index = index; index < maxIndex + 3; index++) {
-      this.newsApi.getNewsDetails(newsId[index][0]).subscribe(
+    for(index = index; index < maxIndex; index++) {
+      this.newsApi.getNewsDetails(newsId[index]).subscribe(
         (res) => this.newNewsSate.updateNews$(res),
         (err) => console.log(err),
       )
     }
     this.newNewsSate.updateIndex$();
+  }
 
-    return this.newNewsSate.
+  loadNewsDetails$(): Observable<NewsDetails[]> {
+    return this.newNewsSate.getNewsDetails$();
+  }
+
+  loadMoreNewsDetails$() {
+    this.updateNewsDetails$();
   }
 }
