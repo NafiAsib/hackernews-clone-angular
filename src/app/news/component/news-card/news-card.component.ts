@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, Output } from '@angular/core';
 import { NewsDetails } from '../../models/news-details.model';
 
 @Component({
@@ -11,13 +11,13 @@ export class NewsCardComponent implements OnInit {
   
   @Input()
   newsDetails: NewsDetails;
-  
   numberOfComments: number;
 
   constructor(@Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
-    this.numberOfComments = this.newsDetails.kids.length;
+    if(this.newsDetails.kids != null) this.numberOfComments = this.newsDetails.kids.length;
+    else this.numberOfComments = 0;
   }
 
   redirectToHackerNews() {

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { NewsRoutingModule } from './news-routing.module';
 import { NewsComponent } from './containers/news/news.component';
 import { NewsCardComponent } from './component/news-card/news-card.component';
@@ -17,7 +16,7 @@ import { PastNewsComponent } from './containers/past-news/past-news.component';
   ],
   imports: [
     CommonModule,
-    NewsRoutingModule
+    NewsRoutingModule,
   ]
 })
 export class NewsModule { }
