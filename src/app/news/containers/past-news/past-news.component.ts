@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PastNewsFacade } from '../../facade/past-news.facade';
+import { NewsDetails } from '../../models/news-details.model';
 
 @Component({
   selector: 'app-past-news',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PastNewsComponent implements OnInit {
 
-  constructor() { }
+  newsDetails$: Observable<NewsDetails[]>;
+  constructor(private newsFacade: PastNewsFacade) { 
+    this.newsDetails$ = newsFacade.loadNewsDetails$();
+  }
 
   ngOnInit(): void {
   }
-
+  
+  onLoadMore() {
+    this.newsFacade.loadMoreNewsDetails$();
+  }
 }

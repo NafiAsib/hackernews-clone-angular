@@ -1,0 +1,25 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 0px 16px 0px;
+  .load-more-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 328px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--primary-color);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+}
