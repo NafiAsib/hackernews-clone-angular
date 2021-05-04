@@ -1,4 +1,8 @@
 <div class="main">
-  <app-news-card [newsDetails]="dummyNewsDetails"></app-news-card>
+  <!-- <app-news-card [newsDetails]="dummyNewsDetails"></app-news-card> -->
+  <app-news-card *ngFor="let news of newsDetails$ | async" [newsDetails]="news"></app-news-card>
 
+</div>
+<div class="load-more">
+  <div class="load-more-btn" (click)="onLoadMore()">Load More</div>
 </div>

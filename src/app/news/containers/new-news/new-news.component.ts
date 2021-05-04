@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { NewNewsFacade } from '../../facade/new-news.facade';
 import { NewsDetails } from '../../models/news-details.model';
 
 @Component({
@@ -36,10 +38,16 @@ export class NewNewsComponent implements OnInit {
     "type": "story",
     "url": "https://edition.cnn.com/style/article/hokusai-great-wave-ukiyo-e-woodblock/index.html"
   };
-  
-  constructor() {}
+
+  newsDetails$: Observable<NewsDetails[]>;
+  constructor(private newsFacade: NewNewsFacade) {
+    this.newsDetails$ = newsFacade.loadNewsDetails$();
+  }
 
   ngOnInit(): void {
   }
 
+  onLoadMore() {
+    this.newsFacade.loadMoreNewsDetails$();
+  }
 }
