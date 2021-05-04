@@ -3,17 +3,19 @@ import { BehaviorSubject } from "rxjs";
 import { NewsDetails } from "../models/news-details.model";
 import { News } from "../models/news.model";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class NewNewsState {
-  private newsId$ = new BehaviorSubject<News[]>(null);
+  private newsId$ = new BehaviorSubject<number[]>(null);
   private newsDetails$ = new BehaviorSubject<NewsDetails[]>(null);
   private currentIndex$ = new BehaviorSubject<number>(0);
 
-  getNews$() {
+  getNewsDetails$() {
     return this.newsDetails$.asObservable();
   }
   
-  setNewsId$(newsId: News[]) {
+  setNewsId$(newsId: number[]) {
     this.newsId$.next(newsId);
   }
 
@@ -31,11 +33,16 @@ export class NewNewsState {
   }
 
   updateNews$(newsDetails: NewsDetails) {
-    const currentValue = this.newsDetails$.getValue();
-    this.newsDetails$.next([...currentValue, newsDetails]);
-  }
+    let currentValue = this.newsDetails$.getValue();
 
-  getNewsDetails$() {
-    return this.newsDetails$.
+    if(currentValue != null) {
+      currentValue.push(newsDetails);
+      this.newsDetails$.next(currentValue);
+    }
+    else {
+      let updateNewsList: NewsDetails[];
+      updateNewsList = [newsDetails];
+      this.newsDetails$.next(updateNewsList);
+    }
   }
 }
